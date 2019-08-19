@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "687070423550",
+    "firebase_url": "https://dev-session.firebaseio.com",
+    "project_id": "dev-session",
+    "storage_bucket": "dev-session.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687070423550:android:ef07efcaeee40bd5",
+        "android_client_info": {
+          "package_name": "com.devsession"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687070423550-nki116u4mlveo5908doel4brh4d0srvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8ENQyZiW6Ah8k-2q7vXKvy4kRs6kcTM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687070423550-nki116u4mlveo5908doel4brh4d0srvt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "687070423550-3dothdcepvvh90guj47s7nus00fvtbsm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.devsession"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
