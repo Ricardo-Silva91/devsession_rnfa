@@ -9,6 +9,8 @@ import { Images } from 'App/Theme'
 import Touchable from '../../Components/Touchable'
 import NavigationService from 'App/Services/NavigationService'
 
+import firebase from 'react-native-firebase'
+
 /**
  * This is an example of a container component.
  *
@@ -36,6 +38,8 @@ class ExampleScreen extends React.Component {
     }
   }
   componentDidMount() {
+    firebase.analytics().setCurrentScreen('HOME')
+    firebase.analytics().logEvent('Home_Open', {})
     console.log('entered home screen')
     this._fetchUser()
   }
@@ -98,11 +102,16 @@ class ExampleScreen extends React.Component {
   }
 
   _goToAbout() {
+    firebase.analytics().logEvent('GoToAbout', { from: 'Home' })
     console.log('navigation click')
     NavigationService.navigateAndReset('AboutScreen')
   }
 
   _fetchUser() {
+    firebase.analytics().logEvent('RefreshClick', {
+      lastUser:
+        !this.props.userIsLoading && !this.props.userErrorMessage ? this.props.user.name : null,
+    })
     console.log('refresh click')
     this.props.fetchUser()
   }

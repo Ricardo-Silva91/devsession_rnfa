@@ -7,7 +7,15 @@ import Style from './AboutScreenStyle'
 import { Images } from 'App/Theme'
 import NavigationService from 'App/Services/NavigationService'
 
+import firebase from 'react-native-firebase'
+
 class AboutScreen extends React.Component {
+  componentDidMount() {
+    firebase.analytics().setCurrentScreen('ABOUT')
+    firebase.analytics().logEvent('About_Open', {})
+    console.log('entered about screen')
+  }
+
   render() {
     return (
       <View style={Style.container}>
@@ -25,6 +33,7 @@ class AboutScreen extends React.Component {
   }
 
   _goHome() {
+    firebase.analytics().logEvent('GoToHome', { from: 'About' })
     console.log('navigation click')
     NavigationService.navigateAndReset('MainScreen')
   }
