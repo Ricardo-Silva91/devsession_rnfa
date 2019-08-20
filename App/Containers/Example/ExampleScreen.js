@@ -6,6 +6,7 @@ import ExampleActions from 'App/Stores/Example/Actions'
 import { liveInEurope } from 'App/Stores/Example/Selectors'
 import Style from './ExampleScreenStyle'
 import { Images } from 'App/Theme'
+import Touchable from '../../Components/Touchable'
 import NavigationService from 'App/Services/NavigationService'
 
 /**
@@ -15,7 +16,25 @@ import NavigationService from 'App/Services/NavigationService'
  * Feel free to remove it.
  */
 
+const picList = [
+  {
+    pic: Images.watermelog,
+    text: '👆 This is a dog sitting on a watermelon 👆',
+  },
+  {
+    pic: Images.plug,
+    text: '👆 This is a shameless plug 👆',
+  },
+]
+
 class ExampleScreen extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      selectedPic: 0,
+    }
+  }
   componentDidMount() {
     console.log('entered home screen')
     this._fetchUser()
@@ -37,24 +56,32 @@ class ExampleScreen extends React.Component {
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <View>
-            <View style={Style.logoContainer}>
-              <Image style={Style.logo} source={Images.watermelog} resizeMode={'contain'} />
-            </View>
-            <Text style={Style.text}>👆 This is a dog sitting on a watermelon 👆</Text>
+            <Touchable onPress={() => this._handlePicClick()}>
+              <View style={Style.logoContainer}>
+                <Image
+                  style={Style.logo}
+                  source={picList[this.state.selectedPic].pic}
+                  resizeMode={'contain'}
+                />
+              </View>
+            </Touchable>
+            <Text style={Style.text}>{picList[this.state.selectedPic].text}</Text>
             <Text style={Style.instructions}>
               This an example app for firebase analytics testing in react-native 😌
             </Text>
             {this.props.userErrorMessage ? (
-              <Text style={Style.error}>{this.props.userErrorMessage}</Text>
+              <View style={Style.errorContainer}>
+                <Image style={Style.brink} source={Images.brink} resizeMode={'contain'} />
+                <Text style={Style.error}>{this.props.userErrorMessage}</Text>
+                <Image style={Style.brink} source={Images.brink} resizeMode={'contain'} />
+              </View>
             ) : (
               <View>
                 <Text style={Style.result}>
                   {"I'm a fake user, my name is "}
                   {this.props.user.name}
                 </Text>
-                <Text style={Style.result}>
-                  {this.props.liveInEurope ? 'I live in Europe !' : "I don't live in Europe."}
-                </Text>
+                <Text style={Style.result}>{`I work for ${this.props.user.company.name}`}</Text>
               </View>
             )}
             <Button onPress={() => this._fetchUser()} title="Refresh" />
@@ -63,6 +90,11 @@ class ExampleScreen extends React.Component {
         )}
       </View>
     )
+  }
+
+  _handlePicClick() {
+    console.log('pic click')
+    this.setState({ selectedPic: this.state.selectedPic === 0 ? 1 : 0 })
   }
 
   _goToAbout() {

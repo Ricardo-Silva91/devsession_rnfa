@@ -3,6 +3,9 @@ import Fonts from 'App/Theme/Fonts'
 import ApplicationStyles from 'App/Theme/ApplicationStyles'
 
 export default StyleSheet.create({
+  brink: {
+    width: 40,
+  },
   container: {
     ...ApplicationStyles.screen.container,
     flex: 1,
@@ -14,6 +17,11 @@ export default StyleSheet.create({
     color: 'red',
     marginBottom: 5,
     textAlign: 'center',
+  },
+  errorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginHorizontal: 20,
   },
   instructions: {
     ...Fonts.style.normal,
