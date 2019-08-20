@@ -7,4 +7,5 @@ export default {
   watermelog: require('App/Assets/Images/watermelog.jpg'),
   brain: require('App/Assets/Images/brain.jpg'),
   plug: require('App/Assets/Images/plug.jpg'),
+  brink: require('App/Assets/Images/intensem.gif'),
 }
